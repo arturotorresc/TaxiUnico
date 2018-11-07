@@ -7,16 +7,21 @@ Rails.application.routes.draw do
                                                        passwords: "drivers/passwords",
                                                        registrations: "drivers/registrations",
                                                        unlocks: "drivers/unlocks" }
+  resources :drivers
+
   devise_for :clients, path: 'clients', controllers: { sessions: "clients/sessions",
                                                        confirmations: "clients/confirmations",
                                                        passwords: "clients/passwords",
                                                        registrations: "clients/registrations",
                                                        unlocks: "clients/unlocks" }
+  resources :clients
+
   devise_for :admins, path: 'admins', controllers: { sessions: "admins/sessions",
                                                      confirmations: "admins/confirmations",
                                                      passwords: "admins/passwords",
                                                      registrations: "admins/registrations",
                                                      unlocks: "admins/unlocks" }
+  resources :admins
 
 
   root 'home#index'

@@ -8,11 +8,15 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= render 'layouts/nav' %>
-    <% if notice %><div><%= notice %></div><% end %>
-    <% if alert %><div><%= alert %></div><% end %>
-    <%= yield %>
+
+  	<% if current_admin %>
+		<%= render 'layouts/nav_admin' %>
+	<% elsif current_driver %>
+		<%= render 'layouts/nav_driver' %>
+	<% elsif current_client %>
+		<%= render 'layouts/nav_client' %>
+	<% end %>
+
   </body>
 </html>
