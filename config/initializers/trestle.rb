@@ -16,9 +16,9 @@ Trestle.configure do |config|
   # config.site_logo_small = "logo-small.png"
 
   # Set the text shown in the page footer within the admin.
-  # Defaults to 'Powered by Trestle'.
+  # Defaults to 'Taxi Unico 2018©'.
   #
-  # config.footer = "Powered by Trestle"
+  config.footer = "Taxi Unico 2018 ©"
 
   # Sets the default precision for timestamps (either :minutes or :seconds).
   # Defaults to :minutes.

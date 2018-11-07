@@ -1,6 +1,6 @@
-Trestle.resource(:trips) do
+Trestle.resource(:drivers) do
   menu do
-    item :trips, icon: "fa fa-suitcase", group: :Informacion
+    item :drivers, icon: "fa fa-user", group: :Usuarios
   end
 
   # Customize the table columns shown on the index view.
@@ -13,7 +13,7 @@ Trestle.resource(:trips) do
 
   # Customize the form fields shown on the new/edit views.
   #
-  # form do |trip|
+  # form do |driver|
   #   text_field :name
   #
   #   row do
@@ -30,6 +30,6 @@ Trestle.resource(:trips) do
   #   http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
   # params do |params|
-  #   params.require(:trip).permit(:name, ...)
+  #   params.require(:driver).permit(:name, ...)
   # end
 end
