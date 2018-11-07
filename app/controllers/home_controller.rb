@@ -14,4 +14,7 @@ class HomeController < ApplicationController
 	def driver
 		redirect_to new_driver_session_path
 	end
+
+	def map
+	end
 end

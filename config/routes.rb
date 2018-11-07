@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   get 'home/admin', to: 'home#admin'
   get 'home/client', to: 'home#client'
   get 'home/driver', to: 'home#driver'
+  get 'home/map', to: 'home#map'
 end
