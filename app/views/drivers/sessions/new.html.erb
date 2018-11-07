@@ -1,14 +1,17 @@
-<h2>Log in</h2>
+<body id="LoginForm">
+  <div class="shadow bg-white m-auto pb-5 pt-5 w-50">
+
+  <h2 text-center text-dark>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :email %><br>
+    <%= f.email_field :email, autofocus: true,:placeholder=> "ejemplo@gmail.com", autocomplete: "email" %>
   </div>
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, :placeholder=> "Contraseña", autocomplete: "current-password" %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
@@ -19,8 +22,13 @@
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in" , class: 'btn btn-primary btn-lg w-75'   %>
   </div>
 <% end %>
 
+<div class="forgot">
 <%= render "drivers/shared/links" %>
+</div>
+
+</div>
+</body>

@@ -7,17 +7,20 @@
 
     <title>Taxi Unico Landing Page</title>
   </head>
-  <body>
-  	<div class="container-fluid">
-		<h1 class="display-1">Taxi Unico</h1>
+  <body id="LoginForm">
+    <div class="shadow bg-white m-auto pb-5 pt-5 w-50">
 
-		<h3 class="text-muted">Por favor, selecciona tu tipo de usuario</h3>
 
-		<ul class="list-unstyled list-inline">
-			<li class="list-inline-item"><%= button_to 'Cliente', home_client_url, method: 'get', :class => "btn btn-outline-primary" %></li>
-			<li class="list-inline-item"><%= button_to 'Conductor', home_driver_url, method: 'get', :class => "btn btn-outline-primary" %></li>
-			<li class="list-inline-item"><%= button_to 'Administrador', home_admin_url, method: 'get', :class => "btn btn-outline-primary" %></li>
-		</ul>
-	</div>
+		<h2 class="text-center text-dark" >Taxi Unico</h2>
+
+		<p class="text-muted text-center">Por favor, selecciona tu tipo de usuario</p>
+
+      <div class="text-center">
+			<%= button_to 'Cliente', home_client_url, method: 'get', :class => "btn btn-primary btn-lg w-75" %><br>
+    	<%= button_to 'Conductor', home_driver_url, method: 'get', :class => "btn btn-primary btn-lg w-75" %><br>
+      <%= button_to 'Administrador', home_admin_url, method: 'get', :class => "btn btn-primary btn-lg w-75" %><br>
+      </div>
+  </div>
+
 </body>
 </html>
