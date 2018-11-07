@@ -4,11 +4,14 @@ class HomeController < ApplicationController
 	end
 
 	def admin
+		redirect_to new_admin_session_path
 	end
 
 	def client
+		redirect_to new_client_session_path
 	end
 
 	def driver
+		redirect_to new_driver_session_path
 	end
 end

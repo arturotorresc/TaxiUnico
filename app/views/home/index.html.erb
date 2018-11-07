@@ -1,9 +1,23 @@
-<h1>Taxi Unico</h1>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<h3>Por favor, selecciona tu tipo de usuario</h3>
+    <title>Taxi Unico Landing Page</title>
+  </head>
+  <body>
+  	<div class="container-fluid">
+		<h1 class="display-1">Taxi Unico</h1>
 
-<ul>
-	<li><%= button_to 'Cliente', home_client_url, method: 'get' %></li>
-	<li><%= button_to 'Conductor', home_driver_url, method: 'get' %></li>
-	<li><%= button_to 'Adminustrador', home_admin_url, method: 'get' %></li>
-</ul>
+		<h3 class="text-muted">Por favor, selecciona tu tipo de usuario</h3>
+
+		<ul class="list-unstyled list-inline">
+			<li class="list-inline-item"><%= button_to 'Cliente', home_client_url, method: 'get', :class => "btn btn-outline-primary" %></li>
+			<li class="list-inline-item"><%= button_to 'Conductor', home_driver_url, method: 'get', :class => "btn btn-outline-primary" %></li>
+			<li class="list-inline-item"><%= button_to 'Administrador', home_admin_url, method: 'get', :class => "btn btn-outline-primary" %></li>
+		</ul>
+	</div>
+</body>
+</html>

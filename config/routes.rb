@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :cars
   resources :trips
+
   devise_for :drivers, path: 'drivers', controllers: { sessions: "drivers/sessions",
                                                        confirmations: "drivers/confirmations",
                                                        passwords: "drivers/passwords",
