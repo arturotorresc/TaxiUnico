@@ -16,6 +16,9 @@ Rails.application.routes.draw do
                                                      passwords: "admins/passwords",
                                                      registrations: "admins/registrations",
                                                      unlocks: "admins/unlocks" }
+
+
+  root 'home#index'
   get 'home/admin', to: 'home#admin'
   get 'home/client', to: 'home#client'
   get 'home/driver', to: 'home#driver'
