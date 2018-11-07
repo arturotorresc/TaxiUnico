@@ -1,24 +1,32 @@
-# README
+# Taxi Unico
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Una aplicación donde puedes pedir taxi que te recoja desde cualquier ubicación hasta una central de Transpais y que te lleve de la central a donde tu le digas.
 
-Things you may want to cover:
 
-* Ruby version
 
-* System dependencies
+**Setup**
 
-* Configuration
 
-* Database creation
 
-* Database initialization
+Se necesita:
 
-* How to run the test suite
+``` ruby 2.5.1 ```
 
-* Services (job queues, cache servers, search engines, etc.)
+``` rails 5.2.1 ```
 
-* Deployment instructions
 
-* ...
+
+Para ver el proyecto:
+
+```cd TaxiUnico ```
+
+``` rails s -p 3000 ```
+
+_en chrome, safari o firefox ingresar_: ``` localhost:3000 ```
+
+
+
+
+
+
+
