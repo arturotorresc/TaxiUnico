@@ -1,6 +1,12 @@
 <nav>
 	<ul>
 		<li>
+			<%= button_to @driver.first_name, @driver, method: 'get' %>
+		</li>
+		<li>
+			<%= button_to 'Historial de viajes', trips_path, method: 'get' %>
+		</li>
+		<li>
 			<%= button_to 'Salir', destroy_driver_session_path, method: 'delete' %>
 		</li>
 	</ul>
