@@ -1,6 +1,18 @@
 <nav>
 	<ul>
 		<li>
+			<%= button_to @admin.first_name, @admin, method: 'get' %>
+		</li>
+		<li>
+			<%= button_to 'Historial de viajes', trips_path, method: 'get' %>
+		</li>
+		<li>
+			<%= button_to 'Clientes', clients_path, method: 'get' %>
+		</li>
+		<li>
+			<%= button_to 'Conductores', drivers_path, method: 'get' %>
+		</li>
+		<li>
 			<%= button_to 'Salir', destroy_admin_session_path, method: 'delete' %>
 		</li>
 	</ul>

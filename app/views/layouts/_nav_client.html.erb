@@ -1,5 +1,11 @@
 <nav>
 	<ul>
+		<li> 
+			<%= button_to @client.first_name, @client, method: 'get' %>
+		</li>
+		<li> 
+			<%= button_to 'Historial de Viajes', trips_path, method: 'get' %>
+		</li>
 		<li>
 			<%= button_to 'Salir', destroy_client_session_path, method: 'delete' %>
 		</li>
