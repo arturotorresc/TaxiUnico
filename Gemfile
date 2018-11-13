@@ -31,6 +31,8 @@ gem 'trestle'
 
 
 gem 'bootstrap'
+gem "font-awesome-rails"
+
 
 gem 'jquery-rails'
 
