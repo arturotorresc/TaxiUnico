@@ -9,11 +9,11 @@
                 <li><%= link_to "Historial de Viajes", trips_path, class:"nav-item nav-link"%></li>
              </ul>
             <ul class="nav navbar-nav ml-auto">
-                <li class="dropdown dropleft">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <%= fa_icon "user", text: current_driver.first_name, class:"nav-item nav-link" %>
-                    </a>
-                    <ul class="dropdown-menu">
+                <li class="dropdown">
+									<a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<%= fa_icon "user", text: current_driver.first_name %>
+									</a>
+                    <ul class="dropdown-menu dropdown-menu-right">
                         <li>
                             <div class="navbar-login">
                                 <div class="row">
