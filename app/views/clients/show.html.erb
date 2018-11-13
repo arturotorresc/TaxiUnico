@@ -19,25 +19,29 @@
         <h5>Viajes</h5>
         <% @client.trips.each do |t| %>
             <div>
-                <h6>Viaje de <b><%= t.origin %></b> a <b><%= t.destiny %></b></h6>
-                <div class="row">
-                    <div class="col-sm">
-                        <%= t.driver %>
+                <div class="card text-center">
+                  <div class="card-header">
+                     Viaje del dia <%= t.datetime.to_formatted_s(:short) %>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <%=fa_icon 'map-pin'%> <%= "Origen: " + t.origin %><br>
+                        <%=fa_icon 'map-pin'%> <%= "Destino: " + t.destiny %><br>
+                      </div>
+                      <div class="col">
+                        <%=fa_icon 'user'%> <%= "Conductor: " + t.driver.first_name %><br>
+                        <%=fa_icon 'clock'%> Duracion: <%= t.duration.to_formatted_s(:time) %> min<br>
+                      </div>
                     </div>
-                    <div class="col-sm">
-                        <%= t.rate %>
-                    </div>
-                    <div class="col-sm">
-                        <%= t.duration %>
-                    </div>
-                    <div class="col-sm">
-                        <%= t.datetime %>
-                    </div>
+                  </div>
+                  <div class="card-footer text-muted">
+                    Calificacion: <%= t.rate %> <%=fa_icon 'star'%>
+                  </div>
                 </div>
             </div>
         <% end %>
     <% end %>
 
-    <%= button_to 'Editar perfil', edit_client_registration_path, method: 'get' %>
 </body>
 </html>
