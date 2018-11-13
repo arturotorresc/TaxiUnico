@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Profile page for clients</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+</head>
+<body>
+
+    <h1><%= @client.first_name %> <%= @client.last_name %></h1>
+
+    <% if @client.rating and @client.rating > 0 %>
+        <h6><%= @client.rating %></h6>
+    <% else %>
+        <h6>Aún no te han calificado.</h6>
+    <% end %>
+
+    <% if @client.trips %>
+        <h5>Viajes</h5>
+        <% @client.trips.each do |t| %>
+            <div>
+                <h1>id, origin, destiny, datetime, driver, client, rate, duration</h1>
+                <h6>Viaje de <b><%= t.origin %></b> a <b><%= t.destiny %></b></h6>
+                <div class="row">
+                    <div class="col-sm">
+                        <%= t.driver %>
+                    </div>
+                    <div class="col-sm">
+                        <%= t.rate %>
+                    </div>
+                    <div class="col-sm">
+                        <%= t.duration %>
+                    </div>
+                    <div class="col-sm">
+                        <%= t.datetime %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+
+
+    <%= button_to 'Editar perfil', edit_client_registration_path, method: 'get' %>
+</body>
+</html>
