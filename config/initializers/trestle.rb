@@ -19,6 +19,9 @@ Trestle.configure do |config|
   # Defaults to 'Taxi Unico 2018©'.
   #
   config.footer = "Taxi Unico 2018 ©"
+  # ...
+  require 'trestle-devise/controller_methods'
+  Trestle::ApplicationController.send(:include, Trestle::Auth::ControllerMethods)
 
   # Sets the default precision for timestamps (either :minutes or :seconds).
   # Defaults to :minutes.
@@ -55,11 +58,13 @@ Trestle.configure do |config|
 
   # Add an explicit menu block to be added to the admin navigation.
   #
-  # config.menu do
-  #   group "Custom Group" do
-  #     item "Custom Link", "/admin/custom", icon: "fa fa-car", badge: { text: "NEW!", class: "label-success" }, priority: :first
-  #   end
-  # end
+
+# <%= link_to("Cerrar sesión", destroy_client_session_path, method: :delete, class:"btn btn-danger btn-block") %>
+# config.menu do
+#   group "Custom Group" do
+#     item "Logout", destroy_admin_session_path, icon: "fa fa-sign-out-alt", priority: :last, method: :delete
+#   end
+# end
 
   # == Extension Options
   #
