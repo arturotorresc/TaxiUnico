@@ -4,7 +4,9 @@ body{
     font-size: 15px;
     line-height: 1.42857143;
     color: #000000;
-    background-color: #2b3e50;
+    background: #E0EAFC;  /* fallback for old browsers */
+   background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
+   background: linear-gradient(to right, #CFDEF3, #E0EAFC);
 }
 input[type=text], input[type=password], input[type=email] {
  width: 75%;
