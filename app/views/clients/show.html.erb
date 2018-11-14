@@ -1,4 +1,4 @@
-    <h1><%= @client.first_name %> <%= @client.last_name %></h1>
+    <h1>Viajes</h1>
 
     <% if @client.rating and @client.rating > 0 %>
         <h6><%= @client.rating %></h6>
@@ -7,7 +7,6 @@
     <% end %>
 
     <% if @client.trips %>
-        <h5>Viajes</h5>
         <% @client.trips.each do |t| %>
             <div>
                 <div class="card text-center w-75 mx-auto">
@@ -31,5 +30,7 @@
                   </div>
                 </div>
             </div>
+            <br>
+            <br>
         <% end %>
     <% end %>

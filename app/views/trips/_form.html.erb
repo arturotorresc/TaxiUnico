@@ -1,4 +1,9 @@
-<%= form_with(model: trip, local: true) do |form| %>
+<body id="LoginForm">
+  <div class="shadow bg-white m-auto pb-5 pt-5 w-50">
+
+  <h2 text-center text-dark>Nuevo Viaje</h2>
+
+  <%= form_with(model: trip, local: true) do |form| %>
   <% if trip.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
@@ -10,43 +15,27 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :origin %>
-    <%= form.text_area :origin %>
+  <div class"field">
+    <%= form.label :origin %><br>
+    <%= form.select(:origin,['Direccion 1', 'Direccion 2'],{},{class: "form-control w-75 mx-auto"}) %><br>
   </div>
 
   <div class="field">
-    <%= form.label :destiny %>
-    <%= form.text_area :destiny %>
+    <%= form.label :destiny %><br>
+    <%= form.select(:destiny,['Direccion 1', 'Direccion 2'],{},{class: "form-control w-75 mx-auto"}) %>
+
   </div>
 
-  <div class="field">
-    <%= form.label :datetime %>
-    <%= form.datetime_select :datetime %>
-  </div>
+  <%= form.hidden_field :client_id, :value => current_client.id %>
+  <%= form.hidden_field :datetime, :value => DateTime.now %>
 
-  <div class="field">
-    <%= form.label :driver_id %>
-    <%= form.text_field :driver_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :client_id %>
-    <%= form.text_field :client_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :rate %>
-    <%= form.text_field :rate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :duration %>
-    <%= form.time_select :duration %>
-  </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Crear viaje", class: 'btn btn-primary btn-lg w-75'%>
   </div>
+
+  <%= button_to 'Back', trips_path, class: "btn btn-danger w-75"%>
+
 <% end %>
+</div>
+</body>
