@@ -1,8 +1,8 @@
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+
 <body id="LoginForm">
-  <div class="shadow bg-white m-auto pb-5 pt-5 w-50">
-
-  <h2 text-center text-dark>Nuevo Viaje</h2>
-
+  <div class="shadow bg-white m-auto w-50">
   <%= form_with(model: trip, local: true) do |form| %>
   <% if trip.errors.any? %>
     <div id="error_explanation">
@@ -15,26 +15,47 @@
       </ul>
     </div>
   <% end %>
-  <div class"field">
-    <%= form.label :origin %><br>
-    <%= form.select(:origin,['Direccion 1', 'Direccion 2'],{},{class: "form-control w-75 mx-auto"}) %><br>
+  <div class="row mx-auto">
+    <div class="col-md-auto">
+      <div class="mx-auto text-center">
+        <%=fa_icon "map-marker",class:" fa-2x", style: "color:green"%>
+      </div>
+    </div>
+    <div class="col-11">
+      <%= form.select(:origin,['Tecnologico de Monterrey', 'Garza Sada 1892', 'Nuevo Sur'],{},{class: "form-control w-100"}) %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :destiny %><br>
-    <%= form.select(:destiny,['Direccion 1', 'Direccion 2'],{},{class: "form-control w-75 mx-auto"}) %>
-
+  <div class="row mx-auto">
+    <div class="col-md-auto">
+      <div class="mx-auto">
+        <%=fa_icon "map-marker",class:"fa-2x text-center", style: "color:red"%>
+      </div>
+    </div>
+    <div class="col-11">
+      <%= form.select(:destiny,['Central de autobuses Monterrey','Central de autobuses San Jeronimo'],{},{class: "form-control w-100"}) %>
+    </div>
   </div>
+  <div id='map' class="mx-auto" style='height: 500px; text-align: justify'></div>
+  <script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiYWFsYmVydG85OCIsImEiOiJjam82ZWt4N2QwMzhqM3FvOWI1MnlsZ3N2In0.zx6DeOmfLPjcxmW-AAwgeg';
+  var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/dark-v9',
+      center: [-100.316608, 25.685359],
+      zoom: 13
+  });
+  </script>
+
+
 
   <%= form.hidden_field :client_id, :value => current_client.id %>
   <%= form.hidden_field :datetime, :value => DateTime.now %>
 
 
   <div class="actions">
-    <%= form.submit "Crear viaje", class: 'btn btn-primary btn-lg w-75'%>
+    <%= form.submit "Crear viaje", class: 'btn btn-primary btn-lg w-100'%>
   </div>
-
-  <%= button_to 'Back', trips_path, class: "btn btn-danger w-75"%>
 
 <% end %>
 </div>
