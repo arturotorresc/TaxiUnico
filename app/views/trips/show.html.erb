@@ -2,8 +2,29 @@
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
 
 <body id="LoginForm">
-  <div class="shadow bg-white m-auto w-50">
-    <div id='map' class="mx-auto" style='height: 600px; text-align: justify'></div>
+  <div class="shadow bg-white m-auto w-75">
+    <div class="alert alert-secondary" role="alert">
+      <div class="row w-50 mx-auto">
+        <div class="col-2 pb-2 pt-2">
+          <%= fa_icon "user", class: "fa-5x" %>
+        </div>
+        <div class="col-10 pb-2 pt-2">
+          <strong>Nombre: Luis Alberto</strong><br>
+          Placas: 4DUXH2A<br>
+          Carro: Nissan Versa<br>
+          Color: Negro
+        </div>
+      </div>
+      <hr>
+      <div class="mb-0">
+        <button type="button" class="btn btn-success w-50"><%=fa_icon "phone", text: " Llamar a tu conductor" %></button>
+      </div>
+    </div>
+    <div class="alert alert-secondary">
+      <%= fa_icon "spinner", class: "fa-pulse fa-4x"%>
+      Esperando asignación de conductor
+    </div>
+    <div id='map' class="mx-auto" style='height: 500px; text-align: justify'></div>
     <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiYWFsYmVydG85OCIsImEiOiJjam82ZWt4N2QwMzhqM3FvOWI1MnlsZ3N2In0.zx6DeOmfLPjcxmW-AAwgeg';
     var map = new mapboxgl.Map({
