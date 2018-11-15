@@ -8,12 +8,8 @@
 
 Admin.create(email: 'dev@admin.com', first_name: 'Admin', last_name: 'Dev', password: 'holahola')
 Client.create(email: 'luke@jedi.com', first_name: 'Luke', last_name: 'Skywalker', rating: 5.0, password: 'holahola')
-Driver.create(first_name: 'Rayo', last_name: 'McQueen', email: 'rayo@mcqueen', password: 'holahola', rating: 5.0, 
+Driver.create(first_name: 'Rayo', last_name: 'McQueen', email: 'rayo@mcqueen', password: 'holahola', rating: 5.0,
 	location: 'Monterrey')
 Car.create(model: 'Model S', license_plate: '40A-340-F3', brand: 'Tesla', color: 'Blanco', driver_id: 1)
-Trip.create(origin: 'Tecnologico de Monterrey' , destiny: 'Centrales de autobus Monterrey', datetime: nil,
+Trip.create(origin: 'Tecnologico de Monterrey' , destiny: 'Centrales de autobus Monterrey', datetime: DateTime.now,
  driver_id: nil, client_id: 1, rate: 123, duration: nil, status: "pending")
-
-
-
-
