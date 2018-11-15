@@ -67,7 +67,7 @@ class TripsController < ApplicationController
       redirect_to current_client
     end
     # Get all trips that have no driver and its origin are from where the driver is located.
-    @trips = Trip.where(status: 'pending', origin: current_driver.location).find_each
+    @trips = Trip.where(status: 'pending').find_each
   end
 
   def accept_trip
