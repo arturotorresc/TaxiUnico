@@ -1,4 +1,4 @@
-<% if @trips.any? and not current_driver.trips.any?%>
+<% if @trips.any? and not current_driver.trips.find_by(status: 'pending')%>
 <h1>Viajes en busca de un conductor</h1>
 	<% @trips.each do |t| %>
 		<div>
