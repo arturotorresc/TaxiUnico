@@ -1,36 +1,53 @@
-    <h1>Viajes</h1>
+<h1>Viajes</h1>
 
-    <% if @client.rating and @client.rating > 0 %>
-        <h6><%= @client.rating %></h6>
-    <% else %>
-        <h6>Aún no te han calificado.</h6>
-    <% end %>
+<% if @client.rating and @client.rating > 0 %>
+    <h6><%= @client.rating %></h6>
+<% else %>
+    <h6>Aún no te han calificado.</h6>
+<% end %>
 
-    <% if @client.trips %>
-        <% @client.trips.each do |t| %>
-            <div>
-                <div class="card text-center w-75 mx-auto">
-                  <div class="card-header">
-                     Viaje del dia <%= t.datetime.to_formatted_s(:short) %>
+<% if @client.trips %>
+    <% @client.trips.each do |t| %>
+      <% if t.status != 'pending' %>
+        <div>
+            <div class="card text-center w-75 mx-auto">
+              <div class="card-header">
+                 Viaje del dia <%= t.datetime.to_formatted_s(:short) %>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <%=fa_icon 'map-pin'%> <%= "Origen: " + t.origin %><br>
+                    <%=fa_icon 'map-pin'%> <%= "Destino: " + t.destiny %><br>
                   </div>
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col">
-                        <%=fa_icon 'map-pin'%> <%= "Origen: " + t.origin %><br>
-                        <%=fa_icon 'map-pin'%> <%= "Destino: " + t.destiny %><br>
-                      </div>
-                      <div class="col">
-                        <%=fa_icon 'user'%> <%= "Conductor: " + t.driver.first_name %><br>
-                        <%=fa_icon 'clock'%> Duracion: <%= t.duration.to_formatted_s(:time) %> min<br>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-footer text-muted">
-                    Calificacion: <%= t.rate %> <%=fa_icon 'star'%>
+                  <div class="col">
+                    <%=fa_icon 'user'%> <%= "Conductor: " + t.driver.first_name %><br>
+                    <%=fa_icon 'clock'%> Duracion: <%= t.duration.to_formatted_s(:time) %> min<br>
                   </div>
                 </div>
+              </div>
+              <div class="card-footer text-muted">
+                Calificacion: <%= t.rate %> <%=fa_icon 'star'%>
+              </div>
             </div>
-            <br>
-            <br>
-        <% end %>
+        </div>
+        <br>
+        <br>
+      <% else %>
+        <div>
+            <div class="card text-center w-75 mx-auto">
+              <div class="card-header">
+                 Viaje pendiente con destino a <%= t.destiny %>%>
+              </div>
+              <div class="card-body">
+                 Tu conductor te recogerá en <%= t.origin %>
+              </div>
+              <div class="card-footer text-muted">
+                <%=fa_icon 'dollar sign'%> <%= t.rate %>
+              </div>
+            </div>
+        </div>
+        <br>
+      <% end %>
     <% end %>
+<% end %>

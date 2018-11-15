@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
 	def index
 		if current_admin
-			redirect_to current_admin
+			redirect_to admin_path
 		elsif current_client
 			redirect_to current_client
 		elsif current_driver
