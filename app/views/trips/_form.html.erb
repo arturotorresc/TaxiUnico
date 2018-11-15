@@ -45,7 +45,7 @@
     var map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/mapbox/dark-v9', //stylesheet location
-      center: [-100.29,25.66], // starting position2910, 7776
+      center: [-100.29,25.67], // starting position2910, 7776
       zoom: 12.5 // starting zoom
     });
 
@@ -139,6 +139,7 @@
 
   <%= form.hidden_field :client_id, :value => current_client.id %>
   <%= form.hidden_field :datetime, :value => DateTime.now %>
+  <%= form.hidden_field :rate, :value => 75 %>
 
 
   <div class="actions">

@@ -73,7 +73,7 @@ class TripsController < ApplicationController
   def accept_trip
     @trip = Trip.find(params[:id])
     @trip.update_attribute(:driver_id, params[:driver_id])
-    
+
     redirect_to find_trips_path
   end
 

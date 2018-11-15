@@ -13,7 +13,7 @@ module Accessible
     elsif current_client
       flash.clear
       # The authenticated root path can be defined in your routes.rb in: devise_scope :user do...
-      redirect_to(home_map_path) && return
+      redirect_to(new_trip_url) && return
     elsif current_driver
       flash.clear
       redirect_to(home_map_path) && return
