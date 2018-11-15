@@ -1,0 +1,40 @@
+<% if @trips.any? and not current_driver.trips.any?%>
+<h1>Viajes en busca de un conductor</h1>
+	<% @trips.each do |t| %>
+		<div>
+			<div>
+				<h6>Cliente: <%= t.client.first_name %> <%= t.client.last_name %> </h6>
+				<div>
+					<p>Origen: <%= t.origin %></p>
+					<p>Destino: <%= t.destiny %></p>
+					<p>Tarifa: <%= t.rate %></p>
+				</div>
+			</div>
+
+			<%= button_to 'Aceptar viaje', accept_trip_path(t), method: 'patch', params: {driver_id: current_driver.id} %>
+		</div>
+
+	<% end %>
+<% elsif current_driver.trips.find_by(status: 'pending') %>
+
+<% client = current_driver.trips.find_by(status: 'pending').client %>
+<% trip = current_driver.trips.find_by(status: 'pending') %>
+
+<h1>Tienes un viaje pendiente con <%= client.first_name %></h1>
+
+<div>
+	<h6> Tarifa: <%= trip.rate %></h6>
+	<h6>Recoge a <%= client.first_name %> en <%= trip.origin %> y llévalo a <%= trip.destiny %></h6>
+
+	<h2> MAPA </h2>
+
+	<%= button_to 'Finalizar viaje' %>
+
+</div>
+
+
+<% else %>
+
+<h1>Por el momento no hay viajes...</h1>
+
+<% end %>

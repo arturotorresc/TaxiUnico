@@ -61,6 +61,20 @@ class TripsController < ApplicationController
     end
   end
 
+  def find_trips
+    # Only allows drivers and admins to see this page.
+    if current_client
+      redirect_to current_client
+    end
+    # Get all trips that have no driver and its origin are from where the driver is located.
+    @trips = Trip.where(status: 'pending', origin: current_driver.location).find_each
+  end
+
+  def accept_trip
+    @trip = Trip.find(params[:id])
+    @trip.update_attribute(:driver_id, params[:driver_id])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_trip

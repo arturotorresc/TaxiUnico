@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root 'home#index'
+  
   resources :cars
   resources :trips
 
@@ -24,9 +27,13 @@ Rails.application.routes.draw do
   resources :admins
 
 
-  root 'home#index'
   get 'home/admin', to: 'home#admin'
   get 'home/client', to: 'home#client'
   get 'home/driver', to: 'home#driver'
   get 'home/map', to: 'home#map'
+
+  get 'find_trips', to: 'trips#find_trips'
+
+  match 'find_trips/:id/accept_trip', to: 'trips#accept_trip', as: 'accept_trip', via: :patch
+  
 end
