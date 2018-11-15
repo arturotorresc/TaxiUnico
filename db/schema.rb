@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_13_182924) do
+ActiveRecord::Schema.define(version: 2018_11_15_161250) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2018_11_13_182924) do
     t.time "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status"
+    t.string "status", default: "pending"
     t.index ["client_id"], name: "index_trips_on_client_id"
     t.index ["driver_id"], name: "index_trips_on_driver_id"
   end
