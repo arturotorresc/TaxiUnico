@@ -54,14 +54,14 @@
 
 <div id='map' class="mx-auto" style='height: 500px; text-align: justify'></div>
 	<script>
-		if (<%= @trip[origin] %> === "Tecnologico de Monterrey"){
+		if (<%= trip.origin %> === "Tecnologico de Monterrey"){
 			var start = [-100.289736,25.650897];
-		} else if (<%= @trip[origin] %>  === "Garza Sada 1892"){
+		} else if (<%= trip.origin %>  === "Garza Sada 1892"){
 			var start = [-100.286160,25.640033];
 		} else {
 			var start = [-100.275420,25.653023];
 		}
-		if (<%= @trip[destiny] %> === "Central de autobuses Monterrey"){
+		if (<%= trip.destiny %> === "Central de autobuses Monterrey"){
 			var end = [-100.319579, 25.686925];
 		} else {
 			var end = [ -100.367201,25.674660];

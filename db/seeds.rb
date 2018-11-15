@@ -11,5 +11,5 @@ Client.create(email: 'luke@jedi.com', first_name: 'Luke', last_name: 'Skywalker'
 Driver.create(first_name: 'Rayo', last_name: 'McQueen', email: 'rayo@mcqueen', password: 'holahola', rating: 5.0,
 	location: 'Monterrey')
 Car.create(model: 'Model S', license_plate: '40A-340-F3', brand: 'Tesla', color: 'Blanco', driver_id: 1)
-Trip.create(origin: 'Tecnologico de Monterrey' , destiny: 'Centrales de autobus Monterrey', datetime: DateTime.now,
+Trip.create(origin: 'Tecnologico de Monterrey' , destiny: 'Central de autobuses Monterrey', datetime: DateTime.now,
  driver_id: nil, client_id: 1, rate: 123, duration: nil, status: "pending")
