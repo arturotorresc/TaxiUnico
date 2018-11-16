@@ -1,121 +1,123 @@
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
-
-<body id="LoginForm">
-  <div class="shadow bg-white m-auto w-75">
-    <% if @trip.status == "pending" %>
-      <div class="alert alert-secondary" role="alert" style="margin-bottom: 0rem;">
-        <%= fa_icon "spinner", class: "fa-pulse fa-4x"%>
-        Esperando asignación de conductor
-      </div>
-    <% else %>
-      <div class="alert alert-secondary" role="alert" style="margin-bottom: 0rem;">
-        <div class="row w-50 mx-auto">
-          <div class="col-2 pb-2 pt-2">
-            <%= fa_icon "user", class: "fa-5x" %>
+<% if @trip.status != "completed" %>
+  <body id="LoginForm">
+    <div class="shadow bg-white m-auto w-75">
+      <% if @trip.status == "pending" %>
+        <div class="alert alert-secondary" role="alert" style="margin-bottom: 0rem;">
+          <%= fa_icon "spinner", class: "fa-pulse fa-4x"%>
+          Esperando asignación de conductor
+        </div>
+      <% elsif @trip.status == "assigned" %>
+        <div class="alert alert-secondary" role="alert" style="margin-bottom: 0rem;">
+          <div class="row w-50 mx-auto">
+            <div class="col-2 pb-2 pt-2">
+              <%= fa_icon "user", class: "fa-5x" %>
+            </div>
+            <div class="col-10 pb-2 pt-2">
+              <strong>Nombre: <%= Driver.find(@trip.driver_id).first_name+ " " + Driver.find(@trip.driver_id).last_name %></strong><br>
+              Placas: 4DUXH2A<br>
+              Carro: Nissan Versa<br>
+              Color: Negro
+            </div>
           </div>
-          <div class="col-10 pb-2 pt-2">
-            <strong>Nombre: <%= Driver.find(@trip.driver_id).first_name+ " " + Driver.find(@trip.driver_id).last_name %></strong><br>
-            Placas: 4DUXH2A<br>
-            Carro: Nissan Versa<br>
-            Color: Negro
+          <hr>
+          <div class="mb-0">
+            <button type="button" class="btn btn-success w-50"><%=fa_icon "phone", text: " Llamar a tu conductor" %></button>
           </div>
         </div>
-        <hr>
-        <div class="mb-0">
-          <button type="button" class="btn btn-success w-50"><%=fa_icon "phone", text: " Llamar a tu conductor" %></button>
-        </div>
-      </div>
-      <% end %>
+        <% end %>
 
 
 
-    <div id='map' class="mx-auto" style='height: 500px; text-align: justify'></div>
-    <script>
-      if ("#{@trip.destiny}" == "Central de autobuses Monterrey"){
-        var end = [-100.319579, 25.686925];
-      } else {
-        var end = [ -100.367201,25.674660];
-      }
-      if ("#{@trip.origin}" == "Tecnologico de Monterrey"){
-        var start = [-100.289736,25.650897];
-      } else if ("#{@trip.origin}"  == "Garza Sada 1892"){
-        var start = [-100.286160,25.640033];
-      } else {
-        var start = [-100.275420,25.653023];
-      }
-      mapboxgl.accessToken = 'pk.eyJ1IjoiYWFsYmVydG85OCIsImEiOiJjam82ZWt4N2QwMzhqM3FvOWI1MnlsZ3N2In0.zx6DeOmfLPjcxmW-AAwgeg';
-      var map = new mapboxgl.Map({
-          container: 'map',
-          style: 'mapbox://styles/mapbox/dark-v9',
-          center: [-100.29,25.67], // starting position2910, 7776
-          zoom: 12.5 // starting zoom
-      });
-      map.on('load', function(){
-        getRoute();
-      });
-      function getRoute() {
-        var directionsRequest = 'https://api.mapbox.com/directions/v5/mapbox/cycling/' + start[0] + ',' + start[1] + ';' + end[0] + ',' + end[1] + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
-        $.ajax({
-          method: 'GET',
-          url: directionsRequest,
-        }).done(function(data){
-          var route = data.routes[0].geometry;
-          map.addLayer({
-            id: 'route',
-            type: 'line',
-            source: {
-              type: 'geojson',
-              data: {
-                type: 'Feature',
-                geometry: route
-              }
-            },
-            paint: {
-              'line-width': 2,
-              'line-color': "#FFFFFF"
-            }
-          });
-          map.addLayer({
-            id: 'start',
-            type: 'circle',
-            source: {
-              type: 'geojson',
-              data: {
-                type: 'Feature',
-                geometry: {
-                  type: 'Point',
-                  coordinates: start
-                }
-              }
-            },"paint": {
-                "circle-radius": 10,
-                "circle-color": "#008000"
-            }
-          });
-          map.addLayer({
-            id: 'end',
-            type: 'circle',
-            source: {
-              type: 'geojson',
-              data: {
-                type: 'Feature',
-                geometry: {
-                  type: 'Point',
-                  coordinates: end
-                }
-              }
-            },
-            "paint": {
-                "circle-radius": 10,
-                "circle-color": "#FF0000"
-            }
-          });
+      <div id='map' class="mx-auto" style='height: 500px; text-align: justify'></div>
+      <script>
+        if ("#{@trip.destiny}" == "Central de autobuses Monterrey"){
+          var end = [-100.319579, 25.686925];
+        } else {
+          var end = [ -100.367201,25.674660];
+        }
+        if ("#{@trip.origin}" == "Tecnologico de Monterrey"){
+          var start = [-100.289736,25.650897];
+        } else if ("#{@trip.origin}"  == "Garza Sada 1892"){
+          var start = [-100.286160,25.640033];
+        } else {
+          var start = [-100.275420,25.653023];
+        }
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYWFsYmVydG85OCIsImEiOiJjam82ZWt4N2QwMzhqM3FvOWI1MnlsZ3N2In0.zx6DeOmfLPjcxmW-AAwgeg';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/dark-v9',
+            center: [-100.29,25.67], // starting position2910, 7776
+            zoom: 12.5 // starting zoom
         });
-      }
-    </script>
-    
-    <%= button_to 'Cancelar Viaje', end_trip_path(@trip), method: 'patch', params: [{status: 'cancelled'}],
-                 class: 'btn btn-danger btn-block w-100' %>
-  </div>
-</body>
+        map.on('load', function(){
+          getRoute();
+        });
+        function getRoute() {
+          var directionsRequest = 'https://api.mapbox.com/directions/v5/mapbox/cycling/' + start[0] + ',' + start[1] + ';' + end[0] + ',' + end[1] + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
+          $.ajax({
+            method: 'GET',
+            url: directionsRequest,
+          }).done(function(data){
+            var route = data.routes[0].geometry;
+            map.addLayer({
+              id: 'route',
+              type: 'line',
+              source: {
+                type: 'geojson',
+                data: {
+                  type: 'Feature',
+                  geometry: route
+                }
+              },
+              paint: {
+                'line-width': 2,
+                'line-color': "#FFFFFF"
+              }
+            });
+            map.addLayer({
+              id: 'start',
+              type: 'circle',
+              source: {
+                type: 'geojson',
+                data: {
+                  type: 'Feature',
+                  geometry: {
+                    type: 'Point',
+                    coordinates: start
+                  }
+                }
+              },"paint": {
+                  "circle-radius": 10,
+                  "circle-color": "#008000"
+              }
+            });
+            map.addLayer({
+              id: 'end',
+              type: 'circle',
+              source: {
+                type: 'geojson',
+                data: {
+                  type: 'Feature',
+                  geometry: {
+                    type: 'Point',
+                    coordinates: end
+                  }
+                }
+              },
+              "paint": {
+                  "circle-radius": 10,
+                  "circle-color": "#FF0000"
+              }
+            });
+          });
+        }
+      </script>
+      <% if @trip.status == "pending" %>
+        <%= button_to 'Cancelar Viaje', end_trip_path(@trip), method: 'patch', params: [{status: 'cancelled'}],
+                     class: 'btn btn-danger btn-block w-100' %>
+      <% end %>
+    </div>
+  </body>
+<%end%>
