@@ -86,7 +86,11 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @trip.update_attribute(:status, params[:status])
 
-    redirect_to find_trips_path
+    if current_driver
+      redirect_to find_trips_path
+    else
+      redirect_to new_trip_path
+    end
   end
 
   private

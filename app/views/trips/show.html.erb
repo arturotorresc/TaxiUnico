@@ -114,6 +114,8 @@
         });
       }
     </script>
-    <%= button_to("Cancelar Viaje", @trip, method: :delete, class:"btn btn-danger btn-block") %>
+    
+    <%= button_to 'Cancelar Viaje', end_trip_path(@trip), method: 'patch', params: [{status: 'cancelled'}],
+                 class: 'btn btn-danger btn-block w-100' %>
   </div>
 </body>
