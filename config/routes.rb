@@ -1,23 +1,16 @@
 Rails.application.routes.draw do
-
   root 'home#index'
-  
-  resources :cars
-  resources :trips
-
   devise_for :drivers, path: 'drivers', controllers: { sessions: "drivers/sessions",
                                                        confirmations: "drivers/confirmations",
                                                        passwords: "drivers/passwords",
                                                        registrations: "drivers/registrations",
                                                        unlocks: "drivers/unlocks" }
-  resources :drivers
 
   devise_for :clients, path: 'clients', controllers: { sessions: "clients/sessions",
                                                        confirmations: "clients/confirmations",
                                                        passwords: "clients/passwords",
                                                        registrations: "clients/registrations",
                                                        unlocks: "clients/unlocks" }
-  resources :clients
 
   devise_for :admins, path: 'admins', controllers: { sessions: "admins/sessions",
                                                      confirmations: "admins/confirmations",
@@ -25,6 +18,9 @@ Rails.application.routes.draw do
                                                      registrations: "admins/registrations",
                                                      unlocks: "admins/unlocks" }
   resources :admins
+  resources :drivers
+  resources :clients
+  resources :trips
 
 
   get 'home/admin', to: 'home#admin'

@@ -5,11 +5,18 @@ Trestle.resource(:trips) do
 
   # Customize the table columns shown on the index view.
   #
-  # table do
-  #   column :name
-  #   column :created_at, align: :center
-  #   actions
-  # end
+  table do
+    column :id
+    column :origin
+    column :destiny
+    column :status
+    column :datetime
+    column :driver, -> (trip) { trip.driver.full_name }
+    column :client, -> (trip) { trip.client.full_name }
+    column :duration
+    column :rate
+    actions
+  end
 
   # Customize the form fields shown on the new/edit views.
   #

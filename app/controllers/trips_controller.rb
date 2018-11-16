@@ -4,7 +4,11 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips = Trip.all
+    if current_client
+      @trips = current_client.trips
+    elsif current_driver
+      @trips = current_driver.trips
+    end
   end
 
   # GET /trips/1

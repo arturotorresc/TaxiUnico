@@ -4,6 +4,9 @@ Trestle.configure do |config|
   # Set the page title shown in the main header within the admin.
   #
   config.site_title = "Taxi Unico"
+  config.hook("view.header") do
+    render "admin/_header"
+  end
 
   # Specify a custom image to be used in place of the site title for mobile and
   # expanded/desktop navigation. These images should be placed within your
