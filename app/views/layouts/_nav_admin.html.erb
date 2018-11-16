@@ -1,7 +1,7 @@
 <nav>
 	<ul>
 		<li>
-			<%= button_to @admin.first_name, @admin, method: 'get' %>
+			<%= button_to current_admin.first_name, current_admin, method: 'get' %>
 		</li>
 		<li>
 			<%= button_to 'Historial de viajes', trips_path, method: 'get' %>
