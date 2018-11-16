@@ -11,8 +11,8 @@ Trestle.resource(:trips) do
     column :destiny
     column :status
     column :datetime
-    column :driver, -> (trip) { trip.driver.full_name }
     column :client, -> (trip) { trip.client.full_name }
+    column :driver, -> (trip) { trip.driver.nil? ? 'N/A' : trip.driver.full_name }
     column :duration
     column :rate
     actions

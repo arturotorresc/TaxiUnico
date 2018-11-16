@@ -5,10 +5,13 @@ Trestle.resource(:drivers) do
 
   # Customize the table columns shown on the index view.
   table do
+    column :id
     column :first_name
     column :last_name
     column :email
     column :location
+    column :rating
+    actions
   end
 
   # Customize the form fields shown on the new/edit views.

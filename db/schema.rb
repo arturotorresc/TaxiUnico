@@ -71,6 +71,16 @@ ActiveRecord::Schema.define(version: 2018_11_16_181852) do
     t.index ["reset_password_token"], name: "index_drivers_on_reset_password_token", unique: true
   end
 
+  create_table "surveys", force: :cascade do |t|
+    t.integer "client_rating"
+    t.integer "driver_rating"
+    t.text "comments"
+    t.integer "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_surveys_on_trip_id"
+  end
+
   create_table "trips", force: :cascade do |t|
     t.text "origin"
     t.text "destiny"

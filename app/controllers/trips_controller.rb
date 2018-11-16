@@ -97,6 +97,7 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:origin, :destiny, :datetime, :driver_id, :client_id, :rate, :duration)
+      params.require(:trip).permit(:origin, :destiny, :datetime, :driver_id, :client_id, :rate, :duration,
+                                    survey_attributes: [:id, :comment, :client_rating, :driver_rating])
     end
 end
