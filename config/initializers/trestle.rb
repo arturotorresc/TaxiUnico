@@ -5,7 +5,7 @@ Trestle.configure do |config|
   #
   config.site_title = "Taxi Unico"
   config.hook("view.header") do
-    render "admin/_header"
+    render "admin/header"
   end
 
   # Specify a custom image to be used in place of the site title for mobile and
