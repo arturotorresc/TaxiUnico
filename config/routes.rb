@@ -31,5 +31,6 @@ Rails.application.routes.draw do
   get 'find_trips', to: 'trips#find_trips'
 
   match 'find_trips/:id/accept_trip', to: 'trips#accept_trip', as: 'accept_trip', via: :patch
+  match 'find_trips/:id/end_trip', to: 'trips#end_trip', as: 'end_trip', via: :patch
   
 end
