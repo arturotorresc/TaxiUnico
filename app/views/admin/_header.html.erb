@@ -1,3 +1,7 @@
-<%= link_to destroy_session_path(:admin), :method => :delete do %>
-    <div> Logout </div>
-<% end %>
+<div class="row pb-2">
+  <div class="col pull-right">
+    <%= link_to destroy_session_path(:admin), :method => :delete do %>
+        <div class="btn btn-danger" style="margin-top:10px">Logout </div>
+    <% end %>
+  </div>
+</div>
