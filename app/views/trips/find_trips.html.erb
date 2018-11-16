@@ -2,7 +2,7 @@
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
 
 
-<% if @trips.any? and not current_driver.trips.find_by(status: 'pending')%>
+<% if @trips.any? and not current_driver.trips.find_by(status: 'assigned')%>
 <h1>Viajes en busca de un conductor</h1>
 	<% @trips.each do |t| %>
 	<div>
@@ -27,10 +27,10 @@
 	<br>
 	<br>
 	<% end %>
-<% elsif current_driver.trips.find_by(status: 'pending') %>
+<% elsif current_driver.trips.find_by(status: 'assigned') %>
 
-<% client = current_driver.trips.find_by(status: 'pending').client %>
-<% trip = current_driver.trips.find_by(status: 'pending') %>
+<% client = current_driver.trips.find_by(status: 'assigned').client %>
+<% trip = current_driver.trips.find_by(status: 'assigned') %>
 
 <div class="shadow bg-white m-auto w-75">
 	<div class="alert alert-secondary" role="alert" style="margin-bottom: 0rem;">
@@ -136,7 +136,9 @@
 			});
 		}
 	</script>
-	<button type="button" class="btn btn-danger btn-block w-100">Finalizar viaje</button>
+
+	<%= button_to 'Finalizar viaje', end_trip_path(trip), method: 'patch', params: [{status: 'completed'}],
+	               class: 'btn btn-danger btn-block w-100' %>
 </div>
 
 
