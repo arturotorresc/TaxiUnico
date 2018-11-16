@@ -5,9 +5,9 @@ class TripsController < ApplicationController
   # GET /trips.json
   def index
     if current_client
-      @trips = current_client.trips
+      @trips = current_client.trips.where(status: 'completed').find_each
     elsif current_driver
-      @trips = current_driver.trips
+      @trips = current_driver.trips.where(status: 'completed').find_each
     end
   end
 

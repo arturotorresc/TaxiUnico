@@ -14,8 +14,12 @@
               <%=fa_icon 'map-marker', style: "color:red"%> <%= "Destino: " + t.destiny %><br>
             </div>
             <div class="col">
-              <%=fa_icon 'user'%> <%= "Cliente: " + t.client.first_name %><br>
-              <%=fa_icon 'clock-o'%> Duracion: <%= t.duration.to_formatted_s(:time) %> min<br>
+              <% if current_client %>
+                <%=fa_icon 'user'%> <%= "Conductor: " + t.driver.first_name %><br>
+              <% elsif current_driver %>
+                <%=fa_icon 'user'%> <%= "Cliente: " + t.client.first_name %><br>
+              <% end %>
+              <%=fa_icon 'clock-o'%> Duracion: <%= t.duration %> min<br>
             </div>
           </div>
         </div>
