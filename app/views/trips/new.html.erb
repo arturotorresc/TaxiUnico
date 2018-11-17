@@ -1,2 +1,9 @@
 
-<%= render 'form', trip: @trip %>
+<!-- Don't show the new trip form if the client has an assigned trip -->
+<% if current_client.trips.find_by(status: 'assigned') %>
+  <script type="text/javascript">
+    window.location.href="/trips/<%= current_client.trips.find_by(status: 'assigned').id %>"
+  </script>
+<% else %>
+	<%= render 'form', trip: @trip %>
+<% end %>
