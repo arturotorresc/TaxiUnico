@@ -4,9 +4,9 @@ class HomeController < ApplicationController
 		if current_admin
 			redirect_to admin_path
 		elsif current_client
-			redirect_to current_client
+			redirect_to new_trip_path
 		elsif current_driver
-			redirect_to current_driver
+			redirect_to find_trips_path
 		end
 	end
 
