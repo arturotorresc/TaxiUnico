@@ -6,7 +6,7 @@
 <h1>Viajes en busca de un conductor</h1>
 	<% @trips.each do |t| %>
 	<div>
-			<div class="card text-center w-75 mx-auto">
+			<div class="card text-center w-xl-75 w-m-75 w-lg-75 w-sm-100 mx-auto">
 				<div class="card-header">
 					 <strong>Cliente: <%= t.client.first_name %> <%= t.client.last_name %></strong>
 				</div>
@@ -32,7 +32,7 @@
 <% client = current_driver.trips.find_by(status: 'assigned').client %>
 <% trip = current_driver.trips.find_by(status: 'assigned') %>
 
-<div class="shadow bg-white m-auto w-75">
+<div class="shadow bg-white m-auto w-xl-75 w-m-75 w-lg-75 w-sm-100">
 	<div class="alert alert-secondary" role="alert" style="margin-bottom: 0rem;">
 		<div class="row w-50 mx-auto">
 			<div class="col-2 pb-2 pt-2">

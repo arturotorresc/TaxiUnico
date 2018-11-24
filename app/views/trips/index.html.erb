@@ -3,7 +3,7 @@
 <h1>Viajes</h1>
 <% @trips.each do |t| %>
     <div>
-      <div class="card text-center w-75 mx-auto">
+      <div class="card text-center w-xl-75 w-m-75 w-lg-75 w-sm-100 mx-auto">
         <div class="card-header">
            Viaje del dia <%= t.datetime.to_formatted_s(:short) %>
         </div>
