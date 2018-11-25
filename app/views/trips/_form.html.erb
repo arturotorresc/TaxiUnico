@@ -135,12 +135,9 @@
   </script>
 </div>
 
-
-
   <%= form.hidden_field :client_id, :value => current_client.id %>
   <%= form.hidden_field :datetime, :value => DateTime.now %>
   <%= form.hidden_field :rate, :value => 75 %>
-
 
   <div class="actions">
     <%= form.submit "Crear viaje", class: 'btn btn-primary btn-lg w-100'%>

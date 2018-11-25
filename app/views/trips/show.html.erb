@@ -1,21 +1,21 @@
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
-<% if @trip.status != "completed" %>
+<% if !@trip.completed? %>
   <body id="LoginForm">
     <div class="shadow bg-white m-auto w-75">
-      <% if @trip.status == "pending" %>
+      <% if @trip.pending? %>
         <div class="alert alert-secondary" role="alert" style="margin-bottom: 0rem;">
           <%= fa_icon "spinner", class: "fa-pulse fa-4x"%>
           Esperando asignación de conductor
         </div>
-      <% elsif @trip.status == "assigned" %>
+      <% elsif @trip.assigned? %>
         <div class="alert alert-secondary" role="alert" style="margin-bottom: 0rem;">
           <div class="row w-50 mx-auto">
             <div class="col-2 pb-2 pt-2">
               <%= fa_icon "user", class: "fa-5x" %>
             </div>
             <div class="col-10 pb-2 pt-2">
-              <strong>Nombre: <%= Driver.find(@trip.driver_id).first_name+ " " + Driver.find(@trip.driver_id).last_name %></strong><br>
+              <strong>Nombre: <%= @trip.driver.first_name+ " " + @trip.driver.last_name %></strong><br>
               Placas: 4DUXH2A<br>
               Carro: Nissan Versa<br>
               Color: Negro
@@ -26,20 +26,17 @@
             <button type="button" class="btn btn-success w-50"><%=fa_icon "phone", text: " Llamar a tu conductor" %></button>
           </div>
         </div>
-        <% end %>
-
-
-
+      <% end %>
       <div id='map' class="mx-auto" style='height: 500px; text-align: justify'></div>
       <script>
-        if ("#{@trip.destiny}" == "Central de autobuses Monterrey"){
+        if ("<%= @trip.destiny %>" == "Central de autobuses Monterrey"){
           var end = [-100.319579, 25.686925];
         } else {
           var end = [ -100.367201,25.674660];
         }
-        if ("#{@trip.origin}" == "Tecnologico de Monterrey"){
+        if ("<%= @trip.origin %>" == "Tecnologico de Monterrey"){
           var start = [-100.289736,25.650897];
-        } else if ("#{@trip.origin}"  == "Garza Sada 1892"){
+        } else if ("<%= @trip.origin %>"  == "Garza Sada 1892"){
           var start = [-100.286160,25.640033];
         } else {
           var start = [-100.275420,25.653023];
@@ -114,10 +111,41 @@
           });
         }
       </script>
-      <% if @trip.status == "pending" %>
-        <%= button_to 'Cancelar Viaje', end_trip_path(@trip), method: 'patch', params: [{status: 'cancelled'}],
+      
+      <% if @trip.pending? %>
+        <%= button_to 'Cancelar Viaje', end_trip_path(@trip), method: 'patch', params: { status: :cancelled },
                      class: 'btn btn-danger btn-block w-100' %>
       <% end %>
     </div>
   </body>
-<%end%>
+<% elsif @trip.completed? %>
+  <div class="modal fade" id="survey-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <%= simple_form_for(@trip, url: trip_path(@trip), method: :put) do |f| %>
+      
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Porfavor conteste esta encuesta</h5>
+          </div>
+          <%= f.error_notification %>
+          <div class="modal-body">
+            <h6>¿Cómo evaluaría al conductor?</h6>
+            <%= f.simple_fields_for :survey do |s| %>
+              <%= s.input :driver_rating, as: :integer, label: false, 
+                          input_html: { min: '0', max: '5' },placeholder: "Del 0 al 5" %>
+              <%= s.input :comments, as: :text, label: "Comentarios", placeholder: "Diganos su opinión" %>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <%= f.button :submit, class: 'btn btn-primary', value: "Guardar" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(window).on('load',function(){
+        $('#survey-modal').modal('show');
+    });
+  </script>
+<% end %>
