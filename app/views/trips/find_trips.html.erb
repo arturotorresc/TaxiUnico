@@ -3,7 +3,7 @@
 
 
 <% if @trips.any? and not current_driver.trips.find_by(status: :assigned)%>
-  <h1>Viajes en busca de un conductor</h1>
+	<h2 class="text-uppercase font-weight-bold">Viajes en espera</h2>
   <%= render 'unassigned_trips', trips: @trips %>
 
 <% elsif current_driver.trips.find_by(status: :assigned) %>
@@ -12,6 +12,7 @@
 
 <% else %>
 
-  <h1>Por el momento no hay viajes...</h1>
+	<h2 class="text-uppercase font-weight-bold">Por el momento no hay viajes...</h2>
+
 
 <% end %>
