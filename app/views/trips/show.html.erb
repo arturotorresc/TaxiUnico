@@ -113,7 +113,7 @@
       </script>
       
       <% if @trip.pending? %>
-        <%= button_to 'Cancelar Viaje', end_trip_path(@trip), method: 'patch', params: { status: :cancelled },
+        <%= button_to 'Cancelar Viaje', @trip, method: :put, params: { trip: { status: :cancelled } },
                      class: 'btn btn-danger btn-block w-100' %>
       <% end %>
     </div>
