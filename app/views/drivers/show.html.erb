@@ -1,0 +1,16 @@
+<h2>Perfil</h2>
+<br>
+<br>
+<div>
+	<h4><%= current_driver.first_name + " " + current_driver.last_name %></h4>
+	<p><%= current_driver.email %></p>
+	<p><%= "Rating: " + current_driver.rating %><%=fa_icon 'star'%></p>
+	<p><%= "Auto registrado: " + current_driver.car.brand  + " " + current_driver.car.model%>
+		<br>
+		<%= "Placas: " + current_driver.car.license_plate %>
+		<br>
+		<%= "Color: " + current_driver.car.color %>
+	</p>
+	<p><%= "Estas trabajando en " + current_driver.location %></p>
+
+	<p><%= link_to("Editar perfil", edit_driver_registration_path) %></p>
